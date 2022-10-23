@@ -1,0 +1,5 @@
+<form *ngFor="let roomName of this.roomNames;" [formGroup]="roomsGroup">
+
+    <input id="{{roomName}}" type="checkbox" formControlName="{{roomName}}" value="{{roomName}}">
+    <label>{{ roomName}}</label>
+</form>

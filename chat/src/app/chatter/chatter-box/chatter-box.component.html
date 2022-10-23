@@ -1,0 +1,13 @@
+<div class="chatter-box child1">
+  <div *ngFor="let message of this.chatService.chatState.messages; let i=index;">
+    <app-messages-display-box [text]="message.text" [self]="message.self" [index]="i"></app-messages-display-box>
+  </div>
+
+  <div class="br"></div>
+
+  <div class="chatter-box__message-input">
+    <input [(ngModel)]="msgText" #msg mat-input type="text" placeholder="Type a message" />
+    <button mat-button color="primary" type="submit" (click)="onSubmit(msg.value)">Send</button>
+  </div>
+</div>
+

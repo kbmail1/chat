@@ -1,0 +1,11 @@
+.chat-rooms-container {
+  border: 1px solid lightgray;
+  // clear: both;
+  margin-top: 0px;
+}
+
+#room-list-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

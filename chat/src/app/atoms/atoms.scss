@@ -1,0 +1,109 @@
+@import '../../styles.scss';
+
+$minFieldWidthInXL: 300px;
+$lineHeight: 1.5rem;
+
+.atom-input {
+  color: $text-color;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  min-width: $minFieldWidthInXL;
+}
+
+.atom-lens {
+  // color: $text-color;
+  border: 1px solid #ccc;
+  background-color: transparent;
+  border:$text-color;
+  display:inline;
+}
+
+.atom-search-lens {
+  display:grid;
+  position:relative;
+  left:-40px;
+  top:0.9rem;
+  display:inline;
+
+
+
+  ;
+}
+
+@keyframes spinner {
+  0% {
+    transform: translate3d(-50%, -50%, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-50%, -50%, 0) rotate(360deg);
+  }
+}
+.atom-spinner::before {
+  animation: 1.5s linear infinite spinner;
+  animation-play-state: inherit;
+  border: solid 5px #cfd0d1;
+  // border-bottom-color: #1c87c9;
+  border-bottom-color: $text-color;
+  border-radius: 50%;
+  content: '';
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
+}
+
+.atom-radio-label,
+.atom-checkbox-label {
+  color: $text-color;
+  position: relative;
+  top: -2px;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+}
+.atom-radio {
+  display: inline-block;
+  margin: 0.5rem;
+  input {
+    margin-right: 0.5rem;
+  }
+}
+
+.atom-checkbox {
+  display: inline-block;
+  margin: 0.5rem;
+  input {
+    margin-right: 0.5rem;
+  }
+}
+
+.atom-select-one {
+  background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 140 140' width='24' height='24' xmlns='http://www.w3.org/2000/svg'><g><path d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' fill='black'/></g></svg>")
+    no-repeat;
+
+  background-position: right 10px center; /* Change the px value here to change the distance */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+  min-width: $minFieldWidthInXL;
+}
+
+.atom-select-multiple {
+  // background: url("data:image/svg+xml;utf8,<svg viewBox='0 0 140 140' width='24' height='24' xmlns='http://www.w3.org/2000/svg'><g><path d='m121.3,34.6c-1.6-1.6-4.2-1.6-5.8,0l-51,51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8,0-1.6,1.6-1.6,4.2 0,5.8l53.9,53.9c0.8,0.8 1.8,1.2 2.9,1.2 1,0 2.1-0.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2 0.1-5.8z' fill='black'/></g></svg>") no-repeat;
+  background-position: right 10px center; /* Change the px value here to change the distance */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+  min-width: $minFieldWidthInXL;
+}
+.atom-option-multiple {
+  margin-bottom: 4px;
+  padding: 4px;
+}

@@ -1,0 +1,25 @@
+.chat-container {
+  display: flex;
+  flex-direction: row;
+  position:relative;
+  top: 5rem;
+  margin:auto;
+  width: 80vw;
+  min-width: calc(1rem * 60);
+  align-items: top;
+  margin: auto;
+  border: 1px solid lightgray;
+
+  .child1 {
+    border: 1px solid lightgray;
+    float: left;
+    margin-right: 1rem;
+    flex:  1 0 60%;
+  }
+
+  .child2 {
+    margin: auto;
+    flex: 1 0 40%
+
+  }
+}

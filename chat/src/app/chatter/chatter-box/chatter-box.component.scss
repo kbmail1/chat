@@ -1,0 +1,26 @@
+.chatter-box {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+.chatter-box__message-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  height: 3rem;
+  border-top: 1px solid black;
+  width: 100%;
+  padding-top: 1.5rem;
+
+  input {
+    padding: 0.5rem;
+    width: 80%;
+  }
+  button::focus {
+    outline: red;
+  }
+}
