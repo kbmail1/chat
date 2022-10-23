@@ -1,13 +1,11 @@
-<div style="display:flex;direction:column">
+<div style="display:flex;flex-direction:column">
 
   <div searchMethod style="display:flex;direction:row;">
     <input class="atom-input" #searchInput placeholder="search..." />
     <i class="material-icons atom-search-lens" onclick="lensClicked">search</i>
   </div>
 
-
   <div>
-    {{ this.searchResults }}
     <div *ngFor="let result of searchResults">
       {{ result }}
     </div>
