@@ -1,5 +1,5 @@
 import { Injectable, ElementRef } from '@angular/core';
-import { BehaviorSubject, Observable, debounceTime, distinctUntilChanged, filter, fromEvent, map, pipe, Subscription, take, takeWhile, tap } from 'rxjs';
+import { BehaviorSubject, Observable, debounceTime, distinctUntilChanged, filter, fromEvent, map, pipe, Subscription, take, takeWhile, tap, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -7,19 +7,36 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MoleculeSearchService {
 
-  private searchTextSub = new BehaviorSubject<string[]>([]);
-  readonly searchText$ = this.searchTextSub.asObservable();
+  searchResults: string[] = []
+  constructor(
+    public httpClient: HttpClient,
+  ) { }
 
-  constructor() { }
 
   getSearchResults = (searchText: string) => {
-    const result = {
-      body: [
-        'one',
-        'two',
-        'three',
-      ]
-    }
-   return this.searchTextSub.next(result.body);
+    console.log(`getSearchResults for text: ${searchText}`)
+    this.httpClient.get(`http://localhost:3000/data`)
+    .pipe(
+        map((data: any ) => {
+          return data.filter((item: any ) => {
+            return item.toLowerCase().includes(searchText.toLowerCase())
+          })
+        }),
+      tap((data: any) => {
+        console.log(`data: ${data}`)
+        this.searchResults = [...data]
+      }))
+      .subscribe({
+        next: (data: any) => {
+          console.log(data)
+        },
+        error: (error: any) => {
+          console.log(error)
+          // this.searchResults = []
+        },
+        complete: () => {
+          console.log('complete')
+        }
+      })
   }
 }

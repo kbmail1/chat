@@ -1,5 +1,5 @@
 import { MoleculeSearchService } from './molecule-search.service';
-import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, fromEvent, map, pipe, Subscription, take, takeWhile, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
@@ -8,10 +8,11 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './molecule-search.component.html',
   styleUrls: ['./molecule-search.component.scss']
 })
-export class MoleculeSearchComponent implements OnInit {
+export class MoleculeSearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('searchInput') searchInput!: ElementRef;
-  searchResults: string[] = [];
+  searchText: string = ''
+  @Output() lensClickEventEmitter = new EventEmitter()
 
   constructor(
     protected httpClient: HttpClient,
@@ -19,9 +20,6 @@ export class MoleculeSearchComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.moleculeSearchService.searchText$.subscribe((searchResults: string[]) => {
-      this.searchResults = searchResults
-    })
   }
 
   ngAfterViewInit(): void {
@@ -29,15 +27,37 @@ export class MoleculeSearchComponent implements OnInit {
     fromEvent(this.searchInput.nativeElement, 'keyup')
       .pipe(
         filter(Boolean),
+        filter((event: any) => event.target.value.length > 2),
+        filter((event: any) => { return this.searchInput.nativeElement.value.includes(event.target.value) }),
         debounceTime(500),
         distinctUntilChanged(),
         tap((text: any) => {
           // console.log('hello')
           // console.log(this.searchInput.nativeElement.value)
           // console.log(`value: this.searchInput.nativeElement.value`)
+          this.searchText = this.searchInput.nativeElement.value;
           this.moleculeSearchService.getSearchResults(this.searchInput.nativeElement.value)
+          this.searchText = '';
+          // console.log(`results: ${this.moleculeSearchService.searchResults}`)
         })
       )
       .subscribe()
   }
+
+  ngOnDestroy(): void {
+    //
+  }
+
+  onSampleClick = (word: any) => {
+    console.log(`sample: ${word}`)
+    this.searchText = word;
+    this.searchInput.nativeElement.value = word;
+  }
+
+  onLensClick (event: Event) {
+    console.log('searchClicked: ' + this.searchInput.nativeElement.value);
+    console.log('but event not reaching emitter')
+    this.lensClickEventEmitter.emit(this.searchInput.nativeElement.value)
+  }
+
 }
