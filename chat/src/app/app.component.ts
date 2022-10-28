@@ -9,10 +9,11 @@ import { MoleculeSearchComponent } from './molecules/molecule-search/molecule-se
 })
 export class AppComponent {
 
+  minCharCount = 4
   constructor() { }
 
-  searchWord(event: any) {
-    console.log('app: search clicked event: ', event);
+  searchWord(word: any) {
+    console.log(`app: search clicked event: ${word}`)
   }
 
 }

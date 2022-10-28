@@ -39,6 +39,6 @@
     <option class="atom-option-multiple" value="3">3</option>
   </select>
 
-  <molecule-search> searchAfterCharacters="5" (lensClickEventEmitter)="searchWord($event)"</molecule-search>
+  <molecule-search [minCharCount]="this.minCharCount" (lensClickEventEmitter)="searchWord($event)"></molecule-search>
 
   <router-outlet></router-outlet>

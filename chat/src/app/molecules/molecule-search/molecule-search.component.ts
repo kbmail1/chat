@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class MoleculeSearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('searchInput') searchInput!: ElementRef;
+  @Input() minCharCount!: number;
   @Output() lensClickEventEmitter = new EventEmitter()
 
   constructor(
@@ -20,6 +21,7 @@ export class MoleculeSearchComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   ngOnInit(): void {
+    console.log(`ngOnInit: ${this.minCharCount}`)
   }
 
   ngAfterViewInit(): void {
@@ -31,7 +33,7 @@ export class MoleculeSearchComponent implements OnInit, AfterViewInit, OnDestroy
         debounceTime(500),
         distinctUntilChanged(),
         tap((text: any) => {
-          this.moleculeSearchService.getSearchResults(this.searchInput.nativeElement.value)
+          this.moleculeSearchService.getSearchResults(this.searchInput.nativeElement.value, this.minCharCount)
         })
       )
       .subscribe()

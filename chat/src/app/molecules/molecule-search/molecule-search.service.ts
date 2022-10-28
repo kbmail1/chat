@@ -14,13 +14,15 @@ export class MoleculeSearchService {
   ) { }
 
 
-  getSearchResults = (searchText: string) => {
+  // TODO: do not invoke http when length if less than equal minChatCount
+  getSearchResults = (searchText: string, minCharCount: number) => {
     console.log(`getSearchResults for text: ${searchText}`)
+    console.log(`minCharCount: ${minCharCount}`)
     this.httpClient.get(`http://localhost:3000/data`)
       .pipe(
         map((data: any) => {
           return data.filter((item: any) => {
-            return (item.toLowerCase().includes(searchText.toLowerCase()) && searchText.length >= 4)
+            return (item.toLowerCase().includes(searchText.toLowerCase()) && searchText.length >= minCharCount)
           })
         }))
       .subscribe({
