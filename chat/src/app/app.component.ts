@@ -11,7 +11,6 @@ export class AppComponent {
 
   constructor() { }
 
-
   searchWord(event: any) {
     console.log('app: search clicked event: ', event);
   }

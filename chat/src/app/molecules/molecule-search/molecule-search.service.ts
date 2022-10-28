@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MoleculeSearchService {
 
+  searchX: Map<number, string> = new Map<number, string>();
   searchResults: string[] = []
   constructor(
     public httpClient: HttpClient,
@@ -16,26 +17,16 @@ export class MoleculeSearchService {
   getSearchResults = (searchText: string) => {
     console.log(`getSearchResults for text: ${searchText}`)
     this.httpClient.get(`http://localhost:3000/data`)
-    .pipe(
-        map((data: any ) => {
-          return data.filter((item: any ) => {
-            return item.toLowerCase().includes(searchText.toLowerCase())
+      .pipe(
+        map((data: any) => {
+          return data.filter((item: any) => {
+            return (item.toLowerCase().includes(searchText.toLowerCase()) && searchText.length >= 4)
           })
-        }),
-      tap((data: any) => {
-        console.log(`data: ${data}`)
-        this.searchResults = [...data]
-      }))
+        }))
       .subscribe({
         next: (data: any) => {
-          console.log(data)
-        },
-        error: (error: any) => {
-          console.log(error)
-          // this.searchResults = []
-        },
-        complete: () => {
-          console.log('complete')
+          this.searchResults = data
+          console.log(`subscribe next: data: ${data}`)
         }
       })
   }

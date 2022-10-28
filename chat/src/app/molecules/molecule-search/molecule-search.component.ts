@@ -11,13 +11,13 @@ import { HttpClient } from '@angular/common/http';
 export class MoleculeSearchComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @ViewChild('searchInput') searchInput!: ElementRef;
-  searchText: string = ''
   @Output() lensClickEventEmitter = new EventEmitter()
 
   constructor(
     protected httpClient: HttpClient,
     public moleculeSearchService: MoleculeSearchService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
@@ -27,18 +27,11 @@ export class MoleculeSearchComponent implements OnInit, AfterViewInit, OnDestroy
     fromEvent(this.searchInput.nativeElement, 'keyup')
       .pipe(
         filter(Boolean),
-        filter((event: any) => event.target.value.length > 2),
         filter((event: any) => { return this.searchInput.nativeElement.value.includes(event.target.value) }),
         debounceTime(500),
         distinctUntilChanged(),
         tap((text: any) => {
-          // console.log('hello')
-          // console.log(this.searchInput.nativeElement.value)
-          // console.log(`value: this.searchInput.nativeElement.value`)
-          this.searchText = this.searchInput.nativeElement.value;
           this.moleculeSearchService.getSearchResults(this.searchInput.nativeElement.value)
-          this.searchText = '';
-          // console.log(`results: ${this.moleculeSearchService.searchResults}`)
         })
       )
       .subscribe()
@@ -48,9 +41,9 @@ export class MoleculeSearchComponent implements OnInit, AfterViewInit, OnDestroy
     //
   }
 
-  onSampleClick = (word: any) => {
+  onSampleSelected = (word: any) => {
     console.log(`sample: ${word}`)
-    this.searchText = word;
+    // this.searchText = word;
     this.searchInput.nativeElement.value = word;
   }
 

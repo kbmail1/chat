@@ -5,7 +5,7 @@
   </div>
   <div>
     <div *ngIf="this.moleculeSearchService.searchResults.length > 0" style="height:200px;overflow:scroll;border:1px solid navy;">
-      <span *ngFor="let result of this.moleculeSearchService.searchResults" style="padding-left:0.5rem;cursor:pointer" (click)="onSampleClick(result)">
+      <span *ngFor="let result of this.moleculeSearchService.searchResults" style="padding-left:0.5rem;cursor:pointer" (click)="onSampleSelected(result)">
         {{ result }}<br>
       </span>
     </div>
