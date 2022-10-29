@@ -9,12 +9,14 @@ import { AngularMaterialModule } from './app-material.module';
 import { AppComponent } from './app.component';
 import { MDatepickerComponent } from './molecules/m-datepicker/m-datepicker.component';
 import { MoleculeSearchComponent } from './molecules/molecule-search/molecule-search.component';
+import { MProgressBarComponent } from './molecules/m-progress-bar/m-progress-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MDatepickerComponent,
     MoleculeSearchComponent,
+    MProgressBarComponent,
   ],
   imports: [
     BrowserModule,

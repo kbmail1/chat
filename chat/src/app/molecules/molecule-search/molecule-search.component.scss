@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+}
+
+.search-input {
+  display: flex;
+  direction: row;
+  border: 1px solid navy;
+  width: 100%; // 20rem;
+}
+
+.search-potential-words-container {
+    height:200px;
+    overflow:scroll;
+    position:absolute;
+    left: 0;
+    top:100%;
+    background:white;
+    width: 100%; // 20rem;
+    border: 1px solid navy;
+    z-index: 100;
+
+}
+.search-potential-word {
+  padding-left: 0.5rem;
+  cursor: pointer;
+}
+

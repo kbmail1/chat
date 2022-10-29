@@ -1,11 +1,12 @@
-<div style="display:flex;flex-direction:column">
-  <div searchMethod style="display:flex;direction:row;">
+<div class="container">
+
+  <div searchMethod class="search-input">
     <input class="atom-input" #searchInput placeholder="search..." />
     <i class="material-icons atom-search-lens" (click)="onLensClick($event)">search</i>
   </div>
-  <div>
-    <div *ngIf="this.moleculeSearchService.searchResults.length > 0" style="height:200px;overflow:scroll;border:1px solid navy;">
-      <span *ngFor="let result of this.moleculeSearchService.searchResults" style="padding-left:0.5rem;cursor:pointer" (click)="onSampleSelected(result)">
+  <div style="position:relative; float:left;border:2px solid blue">
+    <div *ngIf="this.moleculeSearchService.searchResults.length > 0 && this.hideDropdown === false" class="search-potential-words-container">
+      <span *ngFor="let result of this.moleculeSearchService.searchResults" class="search-potential-word" (click)="onSampleSelected(result)">
         {{ result }}<br>
       </span>
     </div>

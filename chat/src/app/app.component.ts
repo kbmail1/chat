@@ -9,11 +9,17 @@ import { MoleculeSearchComponent } from './molecules/molecule-search/molecule-se
 })
 export class AppComponent {
 
+  // search bar
   minCharCount = 4
-  constructor() { }
+  constructor() {}
 
   searchWord(word: any) {
     console.log(`app: search clicked event: ${word}`)
   }
+
+
+  pgWidth = 350
+  pgDuration = 20
+  // progress bar
 
 }

@@ -1,14 +1,17 @@
 <div style="margin:20px;padding-left: 20px;">
 
   <p>
+    <br>
   </p>
   <div style="position:relative;top:600px;" class="atom-spinner"></div>
 
   <p>
+    <br>
   </p>
   <input type="text" id="input" placeholder="Enter your name" class="atom-input" />
 
   <p>
+    <br>
   </p>
   <input type="radio" name="rad" class="atom-radio" />
   <label for="rad" class="atom-radio-label">Name</label>
@@ -19,6 +22,7 @@
   <label for="cbox=" class="atom-checkbox-label">Name</label>
 
   <p>
+    <br>
   </p>
   <i class="material-icons atom-lens">search</i>
 
@@ -32,13 +36,36 @@
   </select>
 
   <p>
+    <br>
   </p>
+
   <select class="atom-select-multiple" multiple>
     <option class="atom-option-multiple" value="1">1</option>
     <option class="atom-option-multiple" value="2">2</option>
     <option class="atom-option-multiple" value="3">3</option>
   </select>
 
+  <p>
+    <br>
+  </p>
+
+
   <molecule-search [minCharCount]="this.minCharCount" (lensClickEventEmitter)="searchWord($event)"></molecule-search>
+  <p>
+    <br>
+  </p>
+  <p>
+    <br>
+  </p>
+  <p>
+    <br>
+  </p>
+
+
+  <m-progress-bar
+    [width]="this.pgWidth"
+    [pgDuration]="pgDuration"
+  >
+  </m-progress-bar>
 
   <router-outlet></router-outlet>

@@ -14,10 +14,13 @@ export class MoleculeSearchComponent implements OnInit, AfterViewInit, OnDestroy
   @Input() minCharCount!: number;
   @Output() lensClickEventEmitter = new EventEmitter()
 
+  hideDropdown!: boolean;
+
   constructor(
     protected httpClient: HttpClient,
     public moleculeSearchService: MoleculeSearchService,
   ) {
+    this.hideDropdown = false;
   }
 
   ngOnInit(): void {
@@ -34,6 +37,7 @@ export class MoleculeSearchComponent implements OnInit, AfterViewInit, OnDestroy
         distinctUntilChanged(),
         tap((text: any) => {
           this.moleculeSearchService.getSearchResults(this.searchInput.nativeElement.value, this.minCharCount)
+          this.hideDropdown = false;
         })
       )
       .subscribe()
@@ -47,6 +51,7 @@ export class MoleculeSearchComponent implements OnInit, AfterViewInit, OnDestroy
     console.log(`sample: ${word}`)
     // this.searchText = word;
     this.searchInput.nativeElement.value = word;
+    this.hideDropdown = true;
   }
 
   onLensClick (event: Event) {
